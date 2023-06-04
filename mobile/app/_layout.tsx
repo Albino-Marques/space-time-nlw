@@ -1,26 +1,27 @@
-import { StatusBar } from 'expo-status-bar'
-import { SplashScreen, Stack } from 'expo-router'
-import { ImageBackground } from 'react-native'
 import { styled } from 'nativewind'
-import { useState, useEffect } from 'react'
-import * as SecureStore from 'expo-secure-store'
+import { ImageBackground } from 'react-native'
 
-import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
+import { BaiJamjuree_700Bold } from '@expo-google-fonts/bai-jamjuree'
+
 import blurBg from '../src/assets/bg-blur.png'
 import Stripes from '../src/assets/stripes.svg'
+import { SplashScreen, Stack } from 'expo-router'
+import { StatusBar } from 'expo-status-bar'
+import * as SecureStore from 'expo-secure-store'
+import { useEffect, useState } from 'react'
 
 const StyledStripes = styled(Stripes)
 
 export default function Layout() {
-  const [isUserAuthenticated, setIsUserAuthenticate] = useState<null | boolean>(
-    null,
-  )
+  const [isUserAuthenticated, setIsUserAuthenticated] = useState<
+    null | boolean
+  >(null)
 
   const [hasLoadedFonts] = useFonts({
     Roboto_400Regular,
@@ -30,7 +31,7 @@ export default function Layout() {
 
   useEffect(() => {
     SecureStore.getItemAsync('token').then((token) => {
-      setIsUserAuthenticate(!!token)
+      setIsUserAuthenticated(!!token)
     })
   }, [])
 
@@ -51,11 +52,12 @@ export default function Layout() {
         screenOptions={{
           headerShown: false,
           contentStyle: { backgroundColor: 'transparent' },
+          animation: 'fade',
         }}
       >
         <Stack.Screen name="index" redirect={isUserAuthenticated} />
-        <Stack.Screen name="new" />
         <Stack.Screen name="memories" />
+        <Stack.Screen name="new" />
       </Stack>
     </ImageBackground>
   )

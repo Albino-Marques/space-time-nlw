@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation'
 export function NewMemoryForm() {
   const router = useRouter()
 
-  async function handleCrateMemory(event: FormEvent<HTMLFormElement>) {
+  async function handleCreateMemory(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
     const formData = new FormData(event.currentTarget)
@@ -48,7 +48,7 @@ export function NewMemoryForm() {
   }
 
   return (
-    <form onSubmit={handleCrateMemory} className="flex flex-1 flex-col gap-2">
+    <form onSubmit={handleCreateMemory} className="flex flex-1 flex-col gap-2">
       <div className="flex items-center gap-4">
         <label
           htmlFor="media"
@@ -69,9 +69,10 @@ export function NewMemoryForm() {
             value="true"
             className="h-4 w-4 rounded border-gray-400 bg-gray-700 text-purple-500"
           />
-          Tornar memória publica
+          Tornar memória pública
         </label>
       </div>
+
       <MediaPicker />
 
       <textarea
@@ -79,7 +80,7 @@ export function NewMemoryForm() {
         spellCheck={false}
         className="w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0"
         placeholder="Fique livre para adicionar fotos, vídeos e relatos sobre essa experiência que você quer lembrar para sempre."
-      ></textarea>
+      />
 
       <button
         type="submit"

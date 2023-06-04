@@ -67,7 +67,7 @@ export async function authRoutes(app: FastifyInstance) {
       },
       {
         sub: user.id,
-        expiresIn: '7 days',
+        expiresIn: '30 days',
       },
     )
 
